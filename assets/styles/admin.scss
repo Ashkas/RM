@@ -1,0 +1,27 @@
+@import "common/_variables";
+
+@import "common/_global";
+
+// Hide the title field for the works cpt
+body.post-type-work #titlewrap {
+	
+	
+	//display: none;
+}
+
+// Highlight background for the admin
+.background_highlight {
+	
+	background: $darkgrey;
+	color: white;
+	
+	p.description {
+		
+		color: $lightgrey;
+	}
+}
+
+.background_alt {
+	
+	background: $lightestgrey;
+}
