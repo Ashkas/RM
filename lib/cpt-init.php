@@ -95,8 +95,8 @@ function create_series_taxonomy()
   $labels = array(
     'name' => _x( 'Series', 'taxonomy general name' ),
     'singular_name' => _x( 'Series', 'taxonomy singular name' ),
-    'search_items' =>  __( 'Search Seriess' ),
-    'all_items' => __( 'All Seriess' ),
+    'search_items' =>  __( 'Search Series' ),
+    'all_items' => __( 'All Series' ),
     'parent_item' => __( 'Parent Series' ),
     'parent_item_colon' => __( 'Parent Series:' ),
     'edit_item' => __( 'Edit Series' ), 
@@ -112,6 +112,131 @@ function create_series_taxonomy()
     'show_ui' => true,
     'query_var' => true,
     'rewrite' => array( 'slug' => 'series'), 
+  ));
+  
+}
+
+////////////* Location Made TAXONOMY *//////////////
+
+add_action( 'init', 'create_location_made_taxonomy', 0 );
+
+function create_location_made_taxonomy() 
+{
+  // Add new taxonomy, make it hierarchical (like categories)
+  $labels = array(
+    'name' => _x( 'Location Made', 'taxonomy general name' ),
+    'singular_name' => _x( 'Location Made', 'taxonomy singular name' ),
+    'search_items' =>  __( 'Search Locations' ),
+    'all_items' => __( 'All Locations Made' ),
+    'parent_item' => __( 'Parent Location Made' ),
+    'parent_item_colon' => __( 'Parent Location Made:' ),
+    'edit_item' => __( 'Edit Location Made' ), 
+    'update_item' => __( 'Update Location Made' ),
+    'add_new_item' => __( 'Add new Location Made' ),
+    'new_item_name' => __( 'New Location Made name' ),
+    'menu_name' => __( 'Location Made' ),
+  ); 	
+
+  register_taxonomy('location_made',array('work'), array(
+    'hierarchical' => true,
+    'labels' => $labels,
+    'show_ui' => true,
+    'query_var' => true,
+    'rewrite' => array( 'slug' => 'location'), 
+  ));
+  
+}
+
+////////////* Support TAXONOMY *//////////////
+
+add_action( 'init', 'create_support_taxonomy', 0 );
+
+function create_support_taxonomy() 
+{
+  // Add new taxonomy, make it hierarchical (like categories)
+  $labels = array(
+    'name' => _x( 'Support', 'taxonomy general name' ),
+    'singular_name' => _x( 'Support', 'taxonomy singular name' ),
+    'search_items' =>  __( 'Search Support' ),
+    'all_items' => __( 'All Support entries' ),
+    'parent_item' => __( 'Parent Support Entry' ),
+    'parent_item_colon' => __( 'Parent Support:' ),
+    'edit_item' => __( 'Edit Support entry' ), 
+    'update_item' => __( 'Update Support' ),
+    'add_new_item' => __( 'Add new Support' ),
+    'new_item_name' => __( 'New Support' ),
+    'menu_name' => __( 'Support' ),
+  ); 	
+
+  register_taxonomy('support',array('work'), array(
+    'hierarchical' => true,
+    'labels' => $labels,
+    'show_ui' => true,
+    'query_var' => true,
+    'rewrite' => array( 'slug' => 'support'), 
+  ));
+  
+}
+
+
+////////////* Collection Location TAXONOMY *//////////////
+
+add_action( 'init', 'create_collection_location_taxonomy', 0 );
+
+function create_collection_location_taxonomy() 
+{
+  // Add new taxonomy, make it hierarchical (like categories)
+  $labels = array(
+    'name' => _x( 'Collection Location', 'taxonomy general name' ),
+    'singular_name' => _x( 'Collection Location', 'taxonomy singular name' ),
+    'search_items' =>  __( 'Search Collection Locations' ),
+    'all_items' => __( 'All Collection Locations' ),
+    'parent_item' => __( 'Parent Collection Location' ),
+    'parent_item_colon' => __( 'Parent Collection Location:' ),
+    'edit_item' => __( 'Edit Collection Location' ), 
+    'update_item' => __( 'Update Collection Location' ),
+    'add_new_item' => __( 'Add new Collection Location' ),
+    'new_item_name' => __( 'New Collection Location name' ),
+    'menu_name' => __( 'Collection Location' ),
+  ); 	
+
+  register_taxonomy('collection_location',array('works'), array(
+    'hierarchical' => true,
+    'labels' => $labels,
+    'show_ui' => true,
+    'query_var' => true,
+    'rewrite' => array( 'slug' => 'collection-location'), 
+  ));
+  
+}
+
+////////////* Keywords TAXONOMY *//////////////
+
+add_action( 'init', 'create_keywords_taxonomy', 0 );
+
+function create_keywords_taxonomy() 
+{
+  // Add new taxonomy, make it non-hierarchical (like tags)
+  $labels = array(
+    'name' => _x( 'Keywords', 'taxonomy general name' ),
+    'singular_name' => _x( 'Keyword', 'taxonomy singular name' ),
+    'search_items' =>  __( 'Search Keywords' ),
+    'all_items' => __( 'All Keywords' ),
+    'parent_item' => __( 'Parent Keyword' ),
+    'parent_item_colon' => __( 'Parent Keyword:' ),
+    'edit_item' => __( 'Edit Keyword' ), 
+    'update_item' => __( 'Update Keywords' ),
+    'add_new_item' => __( 'Add new Keyword' ),
+    'new_item_name' => __( 'New Keyword name' ),
+    'menu_name' => __( 'Keywords' ),
+  ); 	
+
+  register_taxonomy('keywords',array('work'), array(
+    'hierarchical' => false,
+    'labels' => $labels,
+    'show_ui' => true,
+    'query_var' => true,
+    'rewrite' => array( 'slug' => 'keywords'), 
   ));
   
 }

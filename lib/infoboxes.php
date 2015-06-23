@@ -72,5 +72,15 @@ function workEntry($post_id) {
 				
 			<?php endforeach;
 		endif; ?>
+		
+		<?php if($location_made):?>
+			<dt>Location made</dt>
+			<?php foreach( $location_made as $term ):
+				 $term = get_term($term, 'location_made',$output, $filter);?>
+				
+				<dd><?php echo $term->name;?></dd>
+				
+			<?php endforeach;
+		endif; ?>
 	</dl>
 <?php }
