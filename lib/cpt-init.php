@@ -4,6 +4,7 @@
 ////////////* Works CUSTOM POSTS *//////////////
 
 /* Add custom post type for Works */
+/*
 function works_cpt_init() {
   $labels = array(
     'name' => _x('Works', 'post type general name'),
@@ -36,24 +37,9 @@ function works_cpt_init() {
   );
   
   register_post_type('work',$args); /* staff is the legacy id that is now used for Our Team */
-}
-add_action( 'init', 'works_cpt_init' );
+//}
 
-// Change it so the default layout view for works for none administrators is single
-// from http://wordpress.stackexchange.com/questions/4552/how-do-i-force-a-single-column-layout-in-screen-layout
-if(!current_user_can('manage_options')):
-	function so_screen_layout_columns( $columns ) {
-	    $columns['post'] = 1;
-	    return $columns;
-	}
-	add_filter( 'screen_layout_columns', 'so_screen_layout_columns' );
-	
-	function so_screen_layout_post() {
-	    return 1;
-	}
-	//There is a filter called get_user_option_meta-box-order_{$page} where $page is the name of the post type.
-	add_filter( 'get_user_option_screen_layout_work', 'so_screen_layout_post' );
-endif;
+// add_action( 'init', 'works_cpt_init' );
 
 // Generate Title and Slug from ACF field
 // https://teamtreehouse.com/forum/collocating-acf-fields-to-post-title
@@ -76,6 +62,7 @@ function my_post_title_updater( $post_id ) {
 //add_action('acf/save_post', 'my_post_title_updater', 20);
 
 //Auto update slug to be post title
+/*
 function myplugin_update_slug( $data, $postarr ) {
     if ( !in_array( $data['post_status'], array( 'draft', 'pending', 'auto-draft' ) ) ) {
         $data['post_name'] = wp_unique_post_slug(sanitize_title( $data['post_title'] ), $postarr['ID'], $data['post_status'], $data['post_type'], $data['post_parent'] );
@@ -83,10 +70,12 @@ function myplugin_update_slug( $data, $postarr ) {
     return $data;
 }
 add_filter( 'wp_insert_post_data', 'myplugin_update_slug', 99, 2 );
+*/
 
 
 ////////////* Series TAXONOMY *//////////////
 
+/*
 add_action( 'init', 'create_series_taxonomy', 0 );
 
 function create_series_taxonomy() 
@@ -115,9 +104,11 @@ function create_series_taxonomy()
   ));
   
 }
+*/
 
 ////////////* Location Made TAXONOMY *//////////////
 
+/*
 add_action( 'init', 'create_location_made_taxonomy', 0 );
 
 function create_location_made_taxonomy() 
@@ -146,9 +137,11 @@ function create_location_made_taxonomy()
   ));
   
 }
+*/
 
 ////////////* Support TAXONOMY *//////////////
 
+/*
 add_action( 'init', 'create_support_taxonomy', 0 );
 
 function create_support_taxonomy() 
@@ -177,10 +170,12 @@ function create_support_taxonomy()
   ));
   
 }
+*/
 
 
 ////////////* Collection Location TAXONOMY *//////////////
 
+/*
 add_action( 'init', 'create_collection_location_taxonomy', 0 );
 
 function create_collection_location_taxonomy() 
@@ -209,9 +204,11 @@ function create_collection_location_taxonomy()
   ));
   
 }
+*/
 
 ////////////* Keywords TAXONOMY *//////////////
 
+/*
 add_action( 'init', 'create_keywords_taxonomy', 0 );
 
 function create_keywords_taxonomy() 
@@ -240,3 +237,4 @@ function create_keywords_taxonomy()
   ));
   
 }
+*/
