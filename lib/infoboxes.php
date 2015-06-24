@@ -11,20 +11,23 @@ function workEntry($post_id) {
 		$alt_title = get_field('c_alternative_title', $post_id);
 		$alt_year = get_field('c_alternative_title_year', $post_id);
 		$series_title = get_field('c_series_title', $post_id);
-		$location_made = get_field('c_location_made', $post_id);
+		$location_made = get_field('c_location_made_title', $post_id);
 		$medium = get_field('c_medium', $post_id);
-		$support = get_field('c_support', $post_id);
 		$technique = get_field('c_technique', $post_id);
+		$technique_req = get_field('c_technique_description_req', $post_id);
+		$technique_desc = get_field('c_technique_description', $post_id);
+		$support = get_field('c_support', $post_id);
+		$support = get_field('c_support_description', $post_id);
 		$image_size = get_field('c_dimensions_image', $post_id);
 		$matrix_size = get_field('c_dimensions_matrix', $post_id);
 		$sheet_size = get_field('c_dimensions_sheet', $post_id);
-		$summary_edition = get_field('c_summary_edition', $post_id);
+		$summary_edition = get_field('c_sum_edition_information', $post_id);
 		$printers = get_field('c_printers', $post_id);
 		$exhibitions = get_field('c_exhibitions', $post_id);
 		$literature = get_field('c_literature', $post_id);		
-		$collection = get_field('c_collection', $post_id);	
-		$collection = get_field('c_edition_information', $post_id);		
+		$collection = get_field('c_collection', $post_id);
 		$edition_information = get_field('c_edition_information', $post_id);	
+		$description = get_field('c_description', $post_id);	
 		$comment = get_field('c_comment', $post_id);	
 		$keywords = get_field('c_keywords', $post_id);		
 	}
@@ -64,9 +67,9 @@ function workEntry($post_id) {
 				<dd><?php echo $term->name;?></dd>
 				
 				<?php if(function_exists('get_field')) {
-					if(get_field('plate_number', $term->taxonomy.'_'.$term->term_id)): ?>
+					if(get_field('s_plate_number', $term->taxonomy.'_'.$term->term_id)): ?>
 						<dt>Plate Number</dt>
-						<dd><?php echo get_field('plate_number',$term->taxonomy.'_'.$term->term_id); ?>
+						<dd><?php echo get_field('s_plate_number',$term->taxonomy.'_'.$term->term_id); ?>
 					<?php endif;
 				} ?>
 				
@@ -76,11 +79,16 @@ function workEntry($post_id) {
 		<?php if($location_made):?>
 			<dt>Location made</dt>
 			<?php foreach( $location_made as $term ):
-				 $term = get_term($term, 'location_made',$output, $filter);?>
+				 $term = get_term($term, 'location',$output, $filter);?>
 				
 				<dd><?php echo $term->name;?></dd>
 				
 			<?php endforeach;
 		endif; ?>
+		
+		<?php if($medium && $technique) :?>
+			<dt>Medium and Technique</dt>
+			<dd><?php echo $medium; ?>
+		<?php endif; ?>
 	</dl>
 <?php }
