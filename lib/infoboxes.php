@@ -255,7 +255,7 @@ function workEntry($post_id) {
 			<dt>Literature</dt>
 			<dd>
 				<?php // loop through the rows of data
-			    while ( have_rows('c_litature') ) : the_row();
+			    while ( have_rows('c_literature') ) : the_row();
 			    	$literature_tax = get_sub_field('c_literature_title');
 			    	$literature_text = get_sub_field('c_literature_text');
 			    	
