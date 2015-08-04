@@ -30,3 +30,24 @@ if(!current_user_can('manage_options')):
 	//There is a filter called get_user_option_meta-box-order_{$page} where $page is the name of the post type.
 	add_filter( 'get_user_option_screen_layout_work', 'so_screen_layout_post' );
 endif;
+
+add_action('admin_init', function() {
+    $_GET['mode'] = 'list';
+}, 100);
+
+//Hide description field from custom taxonomy screens
+/**
+ * Remove default description column from category
+ *
+ */
+function jw_remove_taxonomy_description($columns)
+{
+ // only edit the columns on the current taxonomy, replace category with your custom taxonomy (don't forget to change in the filter as well)
+ if ( !isset($_GET['taxonomy']) || $_GET['taxonomy'] != 'exhibtion-name' )
+ return $columns;
+
+ // unset the description columns
+ if ( $posts = $columns['description'] ){ unset($columns['description']); }
+ return $columns;
+}
+add_filter('manage_edit-exhibtion-name','jw_remove_taxonomy_description');
