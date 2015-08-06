@@ -1,28 +1,37 @@
 <?php
 	
-function workEntry($post_id) { 
+function workEntry($post_id, $alt_id = NULL) { 
 	
 	// ACF variables
 	if(function_exists('get_field')) {
-		
-		// 1st step is to check whether this is an alternative title, if it is, then we want to pull values form the original
-		$get_alt_title = get_field('c_alternative_title', $post_id);
-		
-		if($get_alt_title != 'is_alternative'): 
-			$post_id = $post_id;
-		endif;
-		
+				
 		$cat_number = get_field('c_number', $post_id);
 		$work_types = get_field('c_work_type', $post_id);
 		$artist_number = get_field('c_artist_number', $post_id);
 		$title = get_the_title($post_id);
-		$year = get_field('c_year', $post_id);
+		
+		// Year shown will change if this is the alternative entry
+		if($alt_id):
+			$year = get_field('c_year', $alt_id);
+		else: 
+			$year = get_field('c_year', $post_id);
+		endif;
+		
+		// 1st step is to check whether this is an alternative title, if it is, then we want to pull values form the original
+		if($alt_id):
+			$get_alt_title = get_field('c_alternative_title', $alt_id);
+		else: 
+			$get_alt_title = get_field('c_alternative_title', $post_id);
+		endif;
 		
 		// If the work does have an alternative title, get the values, otherwise ignore
 		if($get_alt_title == 'has_alternative'): 
 			$alt_title_select_id = get_field('c_alternative_title_select', $post_id);
 			$alt_title = get_the_title($alt_title_select_id[0]);
 			$alt_title_link = get_permalink($alt_title_select_id[0]);
+		elseif($get_alt_title == 'is_alternative'):
+			$alt_title = get_the_title($post_id);
+			$alt_title_link = get_permalink($post_id);
 		endif;
 		
 		$series_title = get_field('c_series_title', $post_id);
@@ -96,8 +105,10 @@ function workEntry($post_id) {
 			<dd><?php echo $year ?></dd>
 		<?php endif; ?>
 		
-		<?php if($alt_title):?>
-			<dt>Alternate Title</dt>
+		<?php if($alt_title):
+			
+			// Change the title here depending if it is alt
+			if($alt_id): echo '<dt>Original Title</dt>'; else: echo '<dt>Alternate Title</dt>'; endif; ?>
 			<dd><a href="<?php echo $alt_title_link; ?>" title="<?php echo $alt_title ?>"><?php echo $alt_title ?></a></dd>
 		<?php endif; ?>
 		
@@ -140,7 +151,7 @@ function workEntry($post_id) {
 				<?php echo $medium.': ';
 				
 				// If Free text description is not set, then just show each of the techniaue items
-				if(!(in_array('technique_free',$technique_req))):
+				if(!$technique_req):
 				
 					// loop through the rows of data
 				    while ( have_rows('c_technique') ) : the_row();

@@ -17,6 +17,7 @@ if (is_admin()) add_action('admin_head', 'custom_admin_css');
 
 // Change it so the default layout view for works for none administrators is single
 // from http://wordpress.stackexchange.com/questions/4552/how-do-i-force-a-single-column-layout-in-screen-layout
+/*
 if(!current_user_can('manage_options')):
 	function so_screen_layout_columns( $columns ) {
 	    $columns['post'] = 1;
@@ -34,6 +35,7 @@ endif;
 add_action('admin_init', function() {
     $_GET['mode'] = 'list';
 }, 100);
+*/
 
 //Hide description field from custom taxonomy screens
 /**
