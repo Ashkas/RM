@@ -1,0 +1,30 @@
+.page-header {
+	
+	border-bottom: none;
+	padding-bottom: 0px;
+	margin: rem-calc(20px) 0px;
+}
+
+// FOr the listing pages
+.listings {
+	margin: 0px;
+	padding: 0px;
+	
+	li {
+		
+		list-style-type: none;
+		border-bottom: 1px solid $verylightgrey;
+		
+		h2 {
+			
+			&:first-child {
+				border-top: 1rem solid white !important;
+			}
+		}
+		
+		p {
+			padding-bottom: 1rem;
+			margin: 0px;
+		}
+	}
+}

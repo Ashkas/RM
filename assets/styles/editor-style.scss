@@ -3,3 +3,9 @@
 body {
   margin: 12px !important;
 }
+
+//Change the decimal lists to alpha
+#tinymce ol li {
+	
+	list-style-type: lower-alpha;
+}

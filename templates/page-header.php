@@ -1,5 +1,7 @@
 <?php use Roots\Sage\Titles; ?>
 
-<div class="page-header">
-  <h1><?= Titles\title(); ?></h1>
-</div>
+<?php if(!is_home()): ?>
+	<div class="page-header">
+		<h1><?= Titles\title(); ?></h1>
+	</div>
+<?php endif; ?>

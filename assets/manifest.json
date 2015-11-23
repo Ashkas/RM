@@ -4,6 +4,13 @@
       "files": [
         "scripts/main.js"
       ],
+      "vendor": [
+	    "assets/scripts/plugins/hamburgler.js",
+        "assets/scripts/plugins/owl.carousel.min.js",
+        "assets/scripts/plugins/fresco.js",
+        "assets/scripts/plugins/classie.js",
+        "assets/scripts/plugins/uiMorphingButton.js"
+      ],
       "main": true
     },
     "main.css": {
@@ -17,9 +24,14 @@
         "styles/editor-style.scss"
       ]
     },
-    "admin.css": {
+    "print.css": {
       "files": [
-        "styles/admin.scss"
+        "styles/print.scss"
+      ]
+    },
+    "print-states.css": {
+      "files": [
+        "styles/print-states.scss"
       ]
     },
     "jquery.js": {
@@ -30,6 +42,6 @@
     }
   },
   "config": {
-    "devUrl": "localhost/rick-amor/"
+    "devUrl": "localhost/rm/"
   }
 }

@@ -19,7 +19,10 @@ function setup() {
   // Register wp_nav_menu() menus
   // http://codex.wordpress.org/Function_Reference/register_nav_menus
   register_nav_menus([
-    'primary_navigation' => __('Primary Navigation', 'sage')
+    'primary_navigation' => __('Primary Navigation', 'sage'),
+    'footer_navigation' => __('Footer Navigation', 'sage'),
+    'secondary_nav_1' => __('Secondary Navigation 1', 'sage'),
+	'secondary_nav_2' => __('Secondary Navigation 2', 'sage'),
   ]);
 
   // Add post thumbnails
@@ -27,6 +30,9 @@ function setup() {
   // http://codex.wordpress.org/Function_Reference/set_post_thumbnail_size
   // http://codex.wordpress.org/Function_Reference/add_image_size
   add_theme_support('post-thumbnails');
+  
+  // JPG QUality
+  add_filter( 'jpeg_quality', create_function( '', 'return 75;' ) );
 
   // Add post formats
   // http://codex.wordpress.org/Post_Formats
@@ -57,6 +63,15 @@ function widgets_init() {
   register_sidebar([
     'name'          => __('Footer', 'sage'),
     'id'            => 'sidebar-footer',
+    'before_widget' => '<section class="widget %1$s %2$s">',
+    'after_widget'  => '</section>',
+    'before_title'  => '<h3>',
+    'after_title'   => '</h3>'
+  ]);
+  
+  register_sidebar([
+    'name'          => __('Search', 'sage'),
+    'id'            => 'sidebar-search',
     'before_widget' => '<section class="widget %1$s %2$s">',
     'after_widget'  => '</section>',
     'before_title'  => '<h3>',

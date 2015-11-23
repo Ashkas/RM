@@ -1,0 +1,40 @@
+.sidebar {
+	
+	background: white;
+	
+	.widget_nav_menu {
+		
+		ul {
+			
+			padding: 0px;
+			margin: 0px 0px rem-calc(20px);
+			text-align: center;
+			
+			li {
+				
+				list-style: none;
+				display: inline-block;
+				font-size: $menuFontSize;
+				margin-right: rem-calc(8px);
+				
+				&:last-child {
+					margin-right: 0px;
+				}
+			}
+		}
+		
+		@include mappy-bp($tab) {
+			
+			ul {
+				text-align: left;
+				margin-top: rem-calc(10px);
+				
+				li {
+					display: block;
+					margin-right: 0px;
+					font-size: rem-calc(16px);
+				}
+			}
+		}
+	}
+}

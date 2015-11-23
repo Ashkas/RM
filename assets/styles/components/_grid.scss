@@ -1,10 +1,48 @@
 // Grid system
 .main {
-  @include make-sm-column($main-sm-columns);
-  .sidebar-primary & {
-    @include make-sm-column($main-sm-columns - $sidebar-sm-columns);
-  }
+	margin-bottom: rem-calc(15px);
+		
+	@include mappy-bp($tab) {
+		@include make-sm-column($main-sm-columns);
+		
+		.sidebar-primary & {
+			@include make-sm-column($main-sm-columns - $sidebar-sm-columns);
+		}
+	}
 }
+
+.header_main {
+	@include mappy-bp($tab) {
+		@include make-sm-column($main-sm-columns);
+	}
+}
+
 .sidebar {
-  @include make-sm-column($sidebar-sm-columns);
+	
+	@include mappy-bp($tab) {
+		@include make-sm-column($sidebar-sm-columns);
+	}
+}
+
+.no_padding {
+	
+	padding: 0px !important;
+}
+
+
+
+@include mappy-bp($tab) {
+	.pull-right-sm {
+	  float: right !important;
+	}
+}
+@include mappy-bp($desk) {
+	.pull-right-md {
+	  float: right !important;
+	}
+}
+@include mappy-bp($desk-large){
+	.pull-right-lg {
+	  float: right !important;
+	}
 }

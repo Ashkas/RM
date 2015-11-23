@@ -1,0 +1,80 @@
+// Remove some preset styling
+.thumbnail, .wp-caption {
+	
+	background: none;
+	border: none;
+	border-radius: 0px;
+}
+
+// Set images
+img {
+	
+	width: 100%;
+}
+
+.very_small_image {
+	
+	min-height: rem-calc(54px);
+	
+	img {
+		max-width: rem-calc(54px);
+		max-height: rem-calc(50px);
+	}
+}
+
+.small_image {
+	
+	width: 50%;
+	
+	@include mappy-bp($desk) {
+		
+		width: 35%;
+	}
+}
+
+// Figure and figcatopion
+
+.wp-caption {
+	width: 100% !important;
+}
+
+.wp-caption-text {
+	
+	font-size:80%;
+}
+
+// Handling the alignment
+
+@include mappy-bp($tab) {
+	
+	.aligncenter {
+		
+		display: block;
+		margin: 0px auto;
+		
+		&.size-medium, &.size-thumbnail {
+			
+			max-width: auto;
+			width: auto;
+		}
+	}
+	
+	.alignleft, .alightright {
+		
+		width: 58.3333% !important;
+	}
+	
+	.alignleft {
+		
+		float: left;
+		margin-left: -8.3333%;
+		margin-right: rem-calc(20px);
+	}
+	
+	.alignright {
+		
+		float: right;
+		margin-right: -8.3333%;
+		margin-left: rem-calc(20px);
+	}
+}

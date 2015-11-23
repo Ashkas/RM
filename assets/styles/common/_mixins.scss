@@ -1,0 +1,382 @@
+@mixin site-maxwidth {
+  max-width:1036px;
+}
+
+@mixin vertical-align {
+  position: relative;
+  top: 45%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  
+	@include mappy-bp($desk){ 
+		top: 50%; 
+	}
+}
+
+/* ==========================================================================
+   Margins
+   ========================================================================== */
+
+@mixin margin-bottom {
+	
+	margin-bottom: rem-calc(20px);
+}
+
+/* ==========================================================================
+   Links
+   ========================================================================== */
+
+//White light link
+@mixin light-link {
+	
+	a:link, a:visited {
+		color: white;
+		text-shadow: 0px 1px 0px black;
+	}
+	
+	a:hover, a:focus {
+		color: $alt2-colour;
+		text-decoration: none;
+	}
+}
+
+@mixin light-link_underline {
+	
+	a:link, a:visited {
+		color: white;
+		text-shadow: none;
+		text-decoration: none;
+		border-bottom: 1px solid white;
+		padding-bottom: rem-calc(2px);
+	}
+	
+	a:hover, a:focus {
+		color: $darkgrey;
+		border-color: $darkgrey;
+	}
+}
+
+@mixin dark-link {
+	
+	a:link, a:visited {
+		color: $midgrey;
+		text-shadow: 0px 1px 0px $verylightgrey;
+	}
+	
+	a:hover, a:focus {
+		color: black;
+		text-decoration: none;
+	}
+}
+
+@mixin dark-link_underline {
+	
+	a:link, a:visited {
+		color: $darkgrey;
+		text-shadow: none;
+		text-decoration: none;
+		border-bottom: 1px solid $darkgrey;
+		padding-bottom: rem-calc(2px);
+	}
+	
+	a:hover, a:focus {
+		color: white;
+		border-color: white;
+	}
+}
+
+@mixin dark-link_underline_alt {
+	
+	a:link, a:visited {
+		color: $darkgrey;
+		text-shadow: none;
+		text-decoration: none;
+		border-bottom: 1px solid $darkgrey;
+		padding-bottom: rem-calc(2px);
+	}
+	
+	a:hover, a:focus {
+		color: $alt-colour;
+		border-color: $alt-colour;
+	}
+}
+
+/* ==========================================================================
+   Blocks
+   ========================================================================== */
+   
+// Used for separating blocks in the site
+@mixin block-border {
+	margin-bottom: rem-calc(20px);
+	padding-bottom: rem-calc(20px);
+	border-bottom: 1px solid $block-border;
+}
+
+@mixin block-border-2 {
+	margin-bottom: rem-calc(20px);
+	padding-bottom: rem-calc(20px);
+	border-bottom: 1px solid $block-border-2;
+}
+
+@mixin block-border-top {
+	margin-top: rem-calc(20px);
+	padding-top: rem-calc(20px);
+	border-top: 1px solid $block-border;
+}
+
+@mixin dotted-block-border {
+	margin-bottom: rem-calc(20px);
+	padding-bottom: rem-calc(20px);
+	border-bottom: 3px dotted $block-border;
+	
+	@include mappy-bp($tab) {
+		margin-bottom: rem-calc(30px);
+		padding-bottom: rem-calc(30px);
+	}
+	
+	@include mappy-bp($desk) {
+		margin-bottom: rem-calc(40px);
+		padding-bottom: rem-calc(40px);
+	}
+}
+
+@mixin mobile-block-border {
+	
+	margin-bottom: rem-calc(20px);
+	padding-bottom: rem-calc(20px);
+	border-bottom: 1px solid $block-border;
+	
+	@include mappy-bp($tab) {
+		
+		margin-bottom: 0px;
+		padding-bottom: 0px;
+		border-bottom: none;
+	}
+}
+
+@mixin tab-block-border {
+	
+	margin-bottom: rem-calc(20px);
+	padding-bottom: rem-calc(20px);
+	border-bottom: 1px solid $block-border;
+	
+	@include mappy-bp($desk) {
+		
+		margin-bottom: 0px;
+		padding-bottom: 0px;
+		border-bottom: none;
+	}
+}
+
+@mixin light-grey-box {
+	
+	background: $lightgrey;
+	color: $darkgrey;
+	
+	a {
+		
+		&:link, &:visited {
+			color: $alt-colour;
+			text-shadow: none;
+		}
+		
+		&:hover, &:focus {
+			color: $alt2-colour;
+		}
+	}
+}
+
+
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+
+@mixin button {
+	-webkit-transition: all 300ms ease-out !important;
+    -moz-transition: all 300ms ease-out !important;
+    -o-transition: all 300ms ease-out !important;
+    transition: all 300ms ease-out !important;
+	border-radius: 4px;  
+	border-bottom: none;
+	text-align: center;
+	display: block;
+	line-height: rem-calc(30px);
+	min-height: rem-calc(30px);
+	font-family: $titleFont;
+	padding: 0px rem-calc(5px);
+}
+
+@mixin cta-button {
+	
+	@include button;
+	
+	&:link, &:visited {
+		background: $alt2-colour;
+		color: $darkgrey;	
+		text-shadow: none;
+		
+	}
+	
+	&:hover, &:focus {
+		background: $alt-colour;
+		color: white;
+		text-decoration: none;
+	}
+	
+/*
+	@include mappy-bp($tab) {
+		
+		font-size: rem-calc(18px);
+		font-weight: bold;
+	}
+*/
+}
+
+@mixin cta-button-alt {
+	
+	@include button;
+	
+	&:link, &:visited{
+		background: $main-colour;
+		color: white;	
+		text-shadow: none;
+		
+	}
+	
+	&:hover, &:focus {
+		background: $alt-colour;
+		text-decoration: none;
+	}
+}
+
+/* ==========================================================================
+   Flexbox from - https://github.com/mastastealth/sass-flex-mixin/blob/master/flex.scss
+   ========================================================================== */
+
+@mixin flexbox {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flexbox;
+	display: flex;
+}
+
+//flexbox { @include flexbox; }
+
+@mixin inline-flex {
+	display: -webkit-inline-box;
+	display: -webkit-inline-flex;
+	display: -moz-inline-flex;
+	display: -ms-inline-flexbox;
+	display: inline-flex;
+}
+
+//inline-flex { @include inline-flex; }
+
+@mixin flex-direction($value: row) {
+
+	@if $value == row-reverse {
+		-webkit-box-direction: reverse;
+		-webkit-box-orient: horizontal;
+	} @else if $value == column {
+		-webkit-box-direction: normal;
+		-webkit-box-orient: vertical;
+	} @else if $value == column-reverse {
+		-webkit-box-direction: reverse;
+		-webkit-box-orient: vertical;
+	} @else {
+		-webkit-box-direction: normal;
+		-webkit-box-orient: horizontal;
+	}
+	
+	-webkit-flex-direction: $value;
+	-moz-flex-direction: $value;
+	-ms-flex-direction: $value;
+	flex-direction: $value;
+}
+
+@mixin flex-wrap($value: nowrap) {
+	// No Webkit Box fallback.
+	-webkit-flex-wrap: $value;
+	-moz-flex-wrap: $value;
+	
+	@if $value == nowrap {
+		-ms-flex-wrap: none;
+	} @else {
+		-ms-flex-wrap: $value;
+	}
+	
+	flex-wrap: $value;
+}
+
+@mixin flex-flow($values: (row nowrap)) {
+	// No Webkit Box fallback.
+	-webkit-flex-flow: $values;
+	-moz-flex-flow: $values;
+	-ms-flex-flow: $values;
+	flex-flow: $values;
+}
+
+@mixin order($int: 0) {
+	-webkit-box-ordinal-group: $int + 1;
+	-webkit-order: $int;
+	-moz-order: $int;
+	-ms-flex-order: $int;
+	order: $int;
+}
+
+@mixin flex-grow($int: 0) {
+	-webkit-box-flex: $int;
+	-webkit-flex-grow: $int;
+	-moz-flex-grow: $int;
+	-ms-flex-positive: $int;
+	flex-grow: $int;
+}
+
+@mixin flex-shrink($int: 1) {
+	-webkit-flex-shrink: $int;
+	-moz-flex-shrink: $int;
+	-ms-flex-negative: $int;
+	flex-shrink: $int;
+}
+
+@mixin flex-basis($value: auto) {
+	-webkit-flex-basis: $value;
+	-moz-flex-basis: $value;
+	-ms-flex-preferred-size: $value;
+	flex-basis: $value;
+}
+
+@mixin flex($fg: 1, $fs: null, $fb: null) {
+    
+// Set a variable to be used by box-flex properties
+	$fg-boxflex: $fg;
+	
+	// Box-Flex only supports a flex-grow value so let's grab the
+	// first item in the list and just return that.
+	@if type-of($fg) == 'list' {
+		$fg-boxflex: nth($fg, 1);
+	}
+	
+	-webkit-box-flex: $fg-boxflex;
+	-webkit-flex: $fg $fs $fb;
+	-moz-box-flex: $fg-boxflex;
+	-moz-flex: $fg $fs $fb;
+	-ms-flex: $fg $fs $fb;
+	flex: $fg $fs $fb;
+}
+
+/* ==========================================================================
+   CSS3 Mixins
+   ========================================================================== */
+
+/* TRANSITION */
+@mixin transition($what: all, $length: 1s, $easing: ease-in-out) {
+    -moz-transition:    $what $length $easing !important;
+    -o-transition:      $what $length $easing !important;
+    -webkit-transition: $what $length $easing !important;
+    -ms-transition:     $what $length $easing !important;
+    transition:         $what $length $easing !important;
+
+}

@@ -1,0 +1,205 @@
+ // Generic styles for printing
+
+@media print and (color) {
+   * {
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+   }
+}
+ 
+html, body {
+	/*changing width to 100% causes huge overflow and wrap*/
+	height:100%; 
+	//overflow: hidden;
+	background: #FFF; 
+	color: black;
+	font-size: 8pt;
+}
+
+@page {
+	//margin: 2cm;
+}
+
+hr {
+	color: #ccc;
+	background-color: #ccc;
+}
+h1, h2, h3, h4, h5, h6, code, pre {
+	color: #000;
+	text-transform: none; /* because sometimes I set all-caps */
+	page-break-after: avoid;
+}
+h1 {
+	font-size: 11pt;
+	margin-top: 1em;
+}
+h2 {
+	font-size: 10pt;
+}
+h3 {
+	font-size: 9pt;
+}
+h4, h5, h6 {
+	font-size: 8pt;
+}
+code, pre {
+	font-size: 8pt;
+	background-color: transparent;
+	/* just in case the user configured browser to print backgrounds */
+}
+blockquote {
+	background-image: none;
+	/* though they may not print, I�d rather be sure */
+}
+a:link, a:visited {
+	text-decoration: underline;
+	color: #000;
+}
+abbr:after, acronym:after { /* some HTML4 love */
+	content:"" !important;
+	//content: " (" attr(title) ") ";
+/* I suspect I am one of the few who still use these elements */
+}
+
+img {
+	//max-width: 100% !important;
+}
+
+// Hide buttons
+button, input[type="submit"] {
+	
+	display: none;
+}
+
+// Header section
+header[role=banner]  {
+	background: none;
+	color: #000;
+
+	img {
+		filter: url(inverse.svg#negative);
+		-webkit-filter: invert(100%);
+		filter: invert(100%);
+	}
+	
+	.header_mobile_icons {
+		display: none;
+	}
+	
+	.header_border {
+		margin-bottom: 0px;
+	}
+}
+
+// Hide the main menu 
+#menu-primary-menu {
+	
+	display: none;
+}
+
+article {
+	//page-break-before: always;
+	
+	h1.work_title {
+		margin: 0.5em 0px;
+	}
+}
+
+ul, img {
+   page-break-inside: avoid;
+}
+
+a {
+	font-weight: bolder;
+	text-decoration: none;
+}
+
+a[href^=http]:after {
+	content:"" !important;
+	//content:" <" attr(href) "> ";
+	//word-wrap: break-word;
+}
+
+a[href^="#"]:after {
+	content:"" !important;
+	//content: "";
+	//word-wrap: break-word;
+}
+
+a[rel="external"]:after {
+	content:"" !important;
+    //content: " <" attr(href) ">"; 
+    //word-wrap: break-word;
+}
+
+a[href]:after {
+   content:"" !important;
+}
+	
+/*
+	$a:after > img {
+		content: "";
+	}
+*/
+	
+/*
+	a:not(:local-link):after {
+		content:" <" attr(href) "> ";
+	}
+*/
+
+
+// Single work
+#print-work {
+	
+	// Chrome needs additional controls over the columns
+	.col-sm-5 {
+		width: 35% !important;
+		float: left;
+	}
+	
+	.col-sm-7 {
+		width: 65% !important;
+		float: left;
+	}
+	
+	// Display the hidden final work
+	.print_work_img {
+		
+		display: block;
+		visibility: visible;
+	}
+	
+	// Hide the img slider as we can't control it in print
+	#work_slider {
+		display: none !important;
+	}
+	
+	// Hide the carousel nav
+	#work_slider_navigation {
+		display: none !important;
+	}
+	
+	// hide the state descriptions
+	#work_slider_description {
+		display: none !important;
+	}
+	
+	// Hide the states button
+	.morph-button {
+		display: none;
+	}
+	
+	// Hide pagination
+	.work_pagination {
+		display: none;
+	}
+}
+
+footer[role="contentinfo"] {
+	
+	// Hide the menu
+	.nav_menu-2 {
+		display: none !important;
+	}
+}

@@ -1,6 +1,379 @@
+$titleFont: "proxima-nova", Helvetica, Arial, sans-serif;
+$bodyFont: "adelle", Helvetica, Arial, sans-serif;
+
+
+html {
+	font-size: 100% !important;
+	height: 100%;
+}
+
+body {
+	font-size: 100%;
+	font-family: $bodyFont;
+	font-feature-settings: "kern";
+    font-kerning: normal;
+    font-variant-ligatures: common-ligatures;
+    text-rendering: optimizelegibility;
+    color: $darkgrey;
+    min-height: 100%;
+    
+    @include mappy-bp($tab) {
+	    
+	    background: #fbfbfb;
+    }
+}
+
+body, caption, th, td, input, textarea, select, option, legend, fieldset, h1, h2, h3, h4, h5, h6, p {
+	//font-size-adjust: 0.5;
+	margin: 0px;
+	padding: 0px;
+	text-align: left;
+	vertical-align: baseline;
+	-webkit-font-smoothing: subpixel-antialiased;
+	-webkit-font-smoothing: antialiased;
+}
+
 dd, dt {
 	
 	&:first-letter {
 		text-transform: capitalize;
+	}
+}
+
+h1, h2, h3, h4 {
+	font-family: $titleFont;
+	font-weight: 200;
+	margin: 0px;
+	padding: 0px;
+	
+	.not_bold {
+		
+		font-weight: 200 !important;
+	}
+}
+
+h1.page_title {
+	font-family: $titleFont;
+	font-weight: 200;
+}
+
+br {
+	margin-bottom: rem-calc(10px);
+}
+
+strong {
+	font-weight: 700;
+}
+
+.capitalise {
+	text-transform: capitalize;
+}
+
+small.alt {
+	font-family: $titleFont;
+}
+
+a {
+	-webkit-transition: color 300ms ease-out !important;
+    -moz-transition: color 300ms ease-out !important;
+    -o-transition: color 300ms ease-out !important;
+    transition: color 300ms ease-out !important;
+	text-decoration: none;
+	
+	&:link, &:visited {
+		color: $darkgrey;
+		text-shadow: 0px 1px 0px $verylightgrey;
+		text-decoration: underline;
+	}
+	
+	&:hover, &:focus {
+		color: $main-colour;
+		text-decoration: underline;
+	}
+	
+	&.alt {
+		
+		&:link, &:visited {
+			color: $main-colour;
+			text-shadow: 0px 1px 0px $verylightgrey;
+		}
+		
+		&:hover, &:focus {
+			color: $alt-colour;
+		}
+	}
+}
+
+dl {
+	
+	margin: 0px 0px rem-calc(10px);
+	
+	@include mappy-bp($tab) {
+		font-size: $tab-body-font;
+	}
+	
+	@include mappy-bp($desk) {
+		font-size: $desk-body-font;
+	}
+	
+	dt {
+		font-weight: 600;
+		margin: 0px;
+		padding: 0px;
+	}
+	
+	dd {
+		margin: 0px 0px rem-calc(15px);
+		padding: 0px;
+		
+		&:last-child {
+			margin: 0px;
+		}
+	}	
+}
+
+
+ul, ol {
+	
+	padding: 0px 0px rem-calc(10px) rem-calc(20px);
+	margin: 0px;
+	
+	li {
+		
+		@include mappy-bp($tab) {
+			font-size: $tab-body-font;
+		}
+		
+		@include mappy-bp($desk) {
+			font-size: $desk-body-font;
+		}
+	}
+}
+
+ul {
+	
+	&.no_bullets {
+		
+		padding-left: 0px;
+		
+		li {
+			
+			list-style-type: none;
+		}
+	}
+}
+
+ol {
+	
+	li {
+		
+		list-style: lower-alpha;
+	}
+}
+
+time {
+	font-family: $titleFont;
+	font-size: 80%;
+	//line-height: 1.11111;
+	//@include font-size(14);
+	//font-style: italic;
+}
+
+.menu_font {
+	font-family: $titleFont;
+	text-transform: uppercase;
+}
+
+h1 {
+	font-size: rem-calc(28px);
+	/* 2x body copy size = 32px */
+	line-height: 1.25;
+	/* 45px / 36px */
+}
+
+h2, h1.alt, h1.home_intro {
+	font-size: rem-calc(18px);
+	/* 1.625x body copy size = 26px */
+	line-height: 1.375em;
+	/* 30px / 26px */
+	font-weight: bold;
+}
+
+h3, h2.alt {
+	//font-size: rem-calc(20px);
+	/* 1.375x body copy size = 22px */
+	//line-height: 1.375em;
+	/* 25px / 22px */
+	font-weight: bold;
+}
+
+h4, h3.alt {
+	font-family: $titleFont;
+	//font-size: rem-calc(18px);
+	/* 1.125x body copy size = 18px */
+	//line-height: 1.375em;
+	font-weight: bold;
+}
+
+blockquote {
+	font-size: rem-calc(22px) !important;
+	/* 20px / 16px */
+	line-height: 1.25 !important;
+	/* 25px / 20px */
+	margin-top: rem-calc(30px) !important;
+	margin-bottom: rem-calc(30px) !important;
+	font-style: italic;
+	text-align: center;
+	border: none !important;
+	
+	p {
+		font-size: rem-calc(22px) !important;
+		text-align: center;
+		margin-bottom: 0px !important;
+		padding-bottom: 0px !important;
+	}
+	
+	@include mappy-bp($tab) {
+		font-size: rem-calc(26px) !important;
+		
+		p {
+			font-size: rem-calc(26px) !important;
+		}
+	}
+}
+
+
+#page {
+	
+	font-weight: 200;
+	line-height: 1.375em;
+	
+	@include mappy-bp($desk) {
+		//font-size:rem-calc(17px);
+		/* equivalent to 16px */
+		line-height: 1.25em
+		/* equivalent to 20px */
+	}
+	
+	@include mappy-bp($desk-large) {
+		//font-size:rem-calc(18px);
+		/* equivalent to 16px */
+		//line-height: 1.65em
+		/* equivalent to 20px */
+	}
+}
+
+.content {
+	
+	h1 {
+		
+		@include mappy-bp($tab) {
+			
+			font-size: rem-calc(32px);
+		}
+		
+		@include mappy-bp($desk) {
+			
+			//font-size: rem-calc(50px);
+		}
+		
+		@include mappy-bp($desk-large) {
+			
+			//font-size: rem-calc(58px);
+		}
+	}
+	
+	h2, h1.alt {
+		
+		padding: rem-calc(4px) 0px rem-calc(-4px);
+		border-top: 1rem solid white;
+		border-bottom: 1rem solid white;
+		
+		&.alt {
+			
+			border-bottom: 0.5rem solid white;
+		}
+		
+		&:first-child {
+			border-top: none !important;
+			padding-top: 0px !important;
+		}
+		
+		@include mappy-bp($tab) {
+			
+			font-size: rem-calc(18px);
+		}
+		
+		@include mappy-bp($desk) {
+			
+			line-height: 1.25em;
+			//font-size: rem-calc(32px);
+		}
+		
+		@include mappy-bp($desk-large) {
+			
+			//font-size: rem-calc(36px);
+		}
+	}
+	
+	h3, h2.alt {
+		
+		padding: rem-calc(5px) 0px rem-calc(-5px);
+		border-top: 1rem solid white;
+		border-bottom: 1rem solid white;
+		
+		&:first-child {
+			border-top: none !important;
+			padding-top: 0px !important;
+		}
+		
+		@include mappy-bp($tab) {
+			
+			//font-size: rem-calc(20px);
+		}
+		
+		@include mappy-bp($desk){
+			
+			//line-height: 1.25em;
+		}
+	}
+	
+	p {
+		margin: rem-calc(7px) 0px rem-calc(-7px) 0px;
+		padding-bottom: rem-calc(17px);
+		
+		@include mappy-bp($tab) {
+			
+			font-size: $tab-body-font;
+			margin: rem-calc(9px) 0px rem-calc(-9px) 0px;
+			padding-bottom: rem-calc(20px);
+		}
+		
+		@include mappy-bp($desk) {
+			
+			font-size: $desk-body-font;
+			line-height: 1.25em;
+			margin: rem-calc(10px) 0px rem-calc(-10px) 0px;
+			padding-bottom: rem-calc(22px);
+		}
+		
+		@include mappy-bp($desk-large) {
+			
+			margin: rem-calc(12px) 0px rem-calc(-12px) 0px;
+			padding-bottom: rem-calc(24px);
+		}
+	}
+	
+	
+	.grid {
+		
+		h3 {
+			border-bottom-width: 0.5rem;
+			font-size: rem-calc(14px);
+		}
+		
+		p, li {
+			font-size: rem-calc(14px);
+		}
 	}
 }

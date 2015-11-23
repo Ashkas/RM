@@ -15,9 +15,10 @@ function body_class($classes) {
     }
   }
 
-  // Add class if sidebar is active
-  if (Config\display_sidebar()) {
-    $classes[] = 'sidebar-primary';
+  // Add class if sidebar is active and is not CPT 'work'
+  if (is_active_sidebar('sidebar-primary') && !(is_singular('work') || is_post_type_archive() || is_home())) {
+	  
+	$classes[] = 'sidebar-primary';
   }
 
   return $classes;
@@ -31,3 +32,15 @@ function excerpt_more() {
   return ' &hellip; <a href="' . get_permalink() . '">' . __('Continued', 'sage') . '</a>';
 }
 add_filter('excerpt_more', __NAMESPACE__ . '\\excerpt_more');
+
+// Change base for Custom Post Types
+// Ref: https://roots.io/sage/docs/theme-wrapper/
+add_filter('sage/wrap_base', __NAMESPACE__ . '\\sage_wrap_base_cpts'); // Add our function to the sage/wrap_base filter
+
+function sage_wrap_base_cpts($templates) {
+	$cpt = get_post_type(); // Get the current post type
+	if ($cpt) {
+	   array_unshift($templates, 'base-' . $cpt . '.php'); // Shift the template to the front of the array
+	}
+	return $templates; // Return our modified array with base-$cpt.php at the front of the queue
+}

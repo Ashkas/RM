@@ -1,0 +1,160 @@
+header[role="banner"] {
+	
+	position: relative;
+	z-index: 101;
+	
+	@include mappy-bp($tab) {
+		
+		padding-bottom: 0px;
+	}
+	
+	.header_main {
+		
+		background: white;	
+	}
+	
+	.header_border {
+		
+		border-bottom: 1px solid $verylightgrey;
+		margin-bottom: rem-calc(10px);
+		padding-bottom: rem-calc(10px);
+		
+		@include mappy-bp($tab) {
+			
+			margin-bottom: rem-calc(15px);
+		}
+	}
+	
+	.wrap {
+		//padding: rem-calc(20px);
+	}
+	
+	.brand_col {
+		//height: rem-calc(50px);
+		display: block;
+	}
+	
+	.header_hamburger_menu {
+		display: inline-block;
+		
+		@include mappy-bp($desk) {
+			
+			display: none;
+			visibility: hidden;
+		}
+	}
+	
+	.header_search {
+		display: inline-block;
+		padding: 0px;
+		vertical-align: super;
+	}
+	
+	.header_mobile_icons {
+		height: rem-calc(64px);
+		display: block;
+		text-align: right;
+		
+		@include dark-link;
+		
+		[class^="icon-"], [class*=" icon-"] {
+			
+			line-height: rem-calc(64px);
+			font-size: rem-calc(18px);
+			font-weight: bold;
+			vertical-align: middle;
+			margin-right: rem-calc(5px);
+			color: $midgrey;
+			
+			&:last-child {
+				margin-right: 0px;
+			}
+			
+			@include mappy-bp($desk) {
+				line-height: rem-calc(50px);
+				text-align: right;
+			}
+		}
+		
+		@include mappy-bp($mobile-wide) {
+			
+			text-align: right;
+		}
+		
+		@include mappy-bp($tab) {
+			
+			
+		}
+		
+		@include mappy-bp($desk) {
+			width: rem-calc(50px) !important;
+			height: rem-calc(50px);
+			margin-top: rem-calc(22px);
+		}
+	}
+	
+	.brand {
+		display: block;
+		padding-top: rem-calc(15px);
+		padding-bottom: 0px;
+		color: $darkgrey;
+		text-shadow: none;
+		@include transition();
+		text-decoration: none;
+		
+		h1 {
+			font-size: rem-calc(26px);
+			font-weight: 600;
+			letter-spacing: 0.025em;
+			color: #555;
+		}
+		
+		span {
+			@include transition();
+			display: block;
+			font-weight: 400;
+			font-size: rem-calc(14px);
+			color: $midgrey;
+			letter-spacing: 0px;
+		}
+		
+		&:hover {
+			text-decoration: none;
+			color: black;
+			
+			span {
+				color: black;
+			}
+		}
+		
+		@include mappy-bp($tab) {
+			
+			padding-top: rem-calc(25px);
+			
+			h1 {
+				font-size: rem-calc(32px);
+				line-height: 0.85em;
+				letter-spacing: 0.035em;
+			}
+			
+			span {
+				display: inline-block;
+				font-size: rem-calc(16px);
+			}
+		}
+		
+		@include mappy-bp($desk) {
+			
+			padding-top: rem-calc(31px);
+			
+			h1 {
+				font-size: rem-calc(33px);
+				line-height: 0.75em;
+			}
+			
+			span {
+				//display: block;
+			}
+		}
+	}
+}

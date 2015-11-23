@@ -1,16 +1,51 @@
 // Glyphicons font path
 $icon-font-path:        "../fonts/";
 
+// Variables for mappy-bp
+$mobile-wide: 560px;
+
+// 768px (was 52em @ 832px)
+$tab: 768px;
+
+// 1100px (was 64em @ 1024px)
+$desk: 1040px;
+
+$desk-large: 1240px;
+
+// 1680px
+$des-xxl: 105em;
+
 // Grid settings
 $main-sm-columns:       12;
-$sidebar-sm-columns:    4;
+$sidebar-sm-columns:    3;
+
+//Font Settings
+$menuFontSize: rem-calc(15px);
 
 // Colors
-$brand-primary:         #27ae60;
+$main-colour: #24ABE2;
+$alt-colour: #F06024;
+$alt2-colour: #FFC517;
 
-$darkgrey: #282828;
-$midgrey: #666;
+$orange: #F16347;
+$red: #F43838;
+$lightred: #f7c0c0;
+$blue: #0099CC;
+//$blue: #00224f;
+$black: #000;
+$darkestgrey: #282828;
+$darkgrey: #333333;
+$midgrey: #777777;
 $lightgrey: #ccc;
 $verylightgrey: #efefef;
-$lightestgrey: #fbfbfb;
+$white: #ffffff;
 
+// BLock Colours
+$block-border: #efefef;
+$block-border-2: $lightgrey;
+
+// Font-sizes
+
+$mob-body-font: rem-calc(16px);
+$tab-body-font: rem-calc(15px);
+$desk-body-font: rem-calc(15px);

@@ -1,0 +1,69 @@
+@include mappy-bp($desk) {
+	
+	.mobilenav {
+		
+		float: right;
+		position: relative;
+		margin: 0px;
+		padding: 0px;
+		margin-top: rem-calc(37px);
+		
+		li {
+			font-family: $bodyFont;
+			list-style-type: none;
+			display: inline-block;
+			margin-right: rem-calc(10px);
+			height: rem-calc(20px);
+			
+			
+			&:last-child {
+				margin-right: 0px;
+			}
+		}
+		
+		a {
+			color: $midgrey;
+			text-decoration: none;
+			
+			&:hover, &:focus {
+				
+				color: black;
+				text-decoration: underline;
+			}
+		}
+	}
+}
+
+/* ------------------------------------------------------ contextual menus */
+
+.menu {
+	
+	font-size: 80%;
+}
+
+.menu {
+	
+	&.contextual_menu {
+	
+		//font-size: 90%;
+		//font-family: $titleFont;
+		//@include block-border;
+		
+		li {
+			
+			border-right: 1px solid $verylightgrey;
+			padding-right: rem-calc(6px);
+			
+			&:last-child {
+				
+				border-right: none;
+			}
+			
+			&.current-menu-item {
+				
+				font-weight: bold;
+			}
+		}
+	}
+}
+

@@ -1,0 +1,60 @@
+.icon {
+	
+	position: relative;
+	z-index: 9999;
+	top: inherit;
+	left: inherit;
+	margin-top: rem-calc(9px);
+	margin-left: rem-calc(-10px);
+	//margin-left: rem-calc(-6px);
+	padding: 0px;
+	
+	@include mappy-bp($mobile-wide) {
+		
+		//padding: 0px;
+		//margin-left: rem-calc(-6px);
+	}
+}
+
+.menui {
+	
+	background: $midgrey;
+}
+
+.mobilenav {
+	
+	font-family: $titleFont;
+	
+	a {
+		text-shadow: none;
+		
+		&:hover, &:focus {
+			color: $alt-colour;
+		}
+	}
+	
+	li {
+		position: relative;
+		z-index: 99999;
+	}
+}
+
+// Customisation to make it like the WeCounsel header
+.top-menu {
+    top: 5px;
+    width: 19px;
+    height: 3px;
+    border-radius: 1px;
+}
+.mid-menu {
+    top: rem-calc(11.5px);
+    width: 19px;
+    height: 3px;
+    border-radius: 1px;
+}
+.bottom-menu {
+    top: rem-calc(17.5px);
+    width: 19px;
+    height: 3px;
+    border-radius: 1px;
+}

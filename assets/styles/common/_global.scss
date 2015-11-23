@@ -1,1 +1,191 @@
 
+/* ------------------------------------------------------ Clears */
+
+.clearfix, .mobile_clearfix {
+	*zoom: 1;
+}
+.clearfix:before,
+.clearfix:after, .mobile_clearfix:before, .mobile_clearfix:after {
+	display: table;
+	content: "";
+}
+.clearfix:after, .mobile_clearfix:after {
+  clear: both;
+}
+
+@include mappy-bp(max-width $desk) {
+	
+	.mobile_tab_clearfix {
+	*zoom: 1;
+	}
+	.mobile_tab_clearfix:before, .mobile_tab_clearfix:after {
+		display: table;
+		content: "";
+	}
+	.mobile_tab_clearfix:after {
+	  clear: both;
+	}
+}
+
+/* ------------------------------------------------------ Display */
+
+.hidden {
+	display: none !important;
+}
+
+.small_device, .mobile_and_tablet_device {
+	display: block !important;
+	visibility: visible !important;
+}
+
+.small_device_inline {
+	display: inline-block !important;
+	visibility: visible !important;
+}
+
+.large_device, .desktop_device, .landscape_and_up, .tablet_device, .large_device_inline, .desktop_device_inline {
+	display: none !important;
+	visibility: hidden !important;
+}
+
+.inline_block {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.display_block {
+	display: block;
+}
+
+.inline {
+	display: inline;
+}
+
+.block {
+	display: block;
+}
+
+/* ------------------------------------------------------ Padding */
+
+.padding_bottom {
+	padding-bottom: u((40rem/16));
+}
+
+/* ------------------------------------------------------ Margin */
+
+.margin_auto {
+	display: block;
+	margin: 0px auto;
+	float: none;
+}
+
+.margin_top {
+	margin-top: rem-calc(20px);
+}
+
+.small_margin_top {
+	margin-top: rem-calc(10px);
+}
+
+.big_margin_top {
+	margin-top: rem-calc(30px);
+	
+	@include mappy-bp($tab) {
+		margin-top: rem-calc(60px);
+	}
+}
+
+.margin_bottom {
+	margin-bottom: rem-calc(20px);
+}
+
+.small_margin_bottom {
+	margin-bottom: rem-calc(10px);
+}
+
+.big_margin_bottom {
+	margin-bottom: rem-calc(30px);
+	
+	@include mappy-bp($tab) {
+		margin-bottom: rem-calc(60px);
+	}
+}
+
+/* ------------------------------------------------------ Alignment */
+
+.centre_float {
+	display: block !important;
+	margin: 0px auto;
+	text-align: center !important;
+}
+
+.float_left {
+	float: left !important;
+}
+
+.float_right {
+	float: right !important;
+}
+
+/* ------------------------------------------------------ Text */
+
+.centre_text, .centre_text p {
+	text-align: center !important;
+}
+
+.right_text {
+	text-align: right !important;
+}
+
+.left_text {
+	text-align: left !important;
+}
+
+.inline_list {
+	margin: 0px;
+	padding: 0px;
+	
+	li {
+		list-style: none;
+		padding: 0px;
+		display: inline;
+		margin: 0px;
+		margin-right: rem-calc(5px);
+		
+		&:last-child {
+			margin-right: 0px;
+		}
+	}
+}
+
+/* ------------------------------------------------------ Colour */
+
+.coloured_background_1 {
+	
+	background: $main-colour;
+	color: white;
+}
+
+.coloured_background_2 {
+	
+	background: $alt-colour;
+	color: white;
+}
+
+/* ------------------------------------------------------ Video Embed */
+
+.embed_container {
+    position: relative;
+    margin-bottom: 1.0em;
+    padding-bottom: 56.25%; /* 16/9 ratio */
+    height: 0;
+    overflow: hidden;
+    
+	iframe, object, embed {
+		position: absolute;
+	    top: 0;
+	    left: 0;
+	    width: 100% !important;
+	    height: 100% !important;
+	}
+}

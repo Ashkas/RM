@@ -3,41 +3,46 @@
 	
 ////////////* Works CUSTOM POSTS *//////////////
 
-/* Add custom post type for Works */
-/*
-function works_cpt_init() {
-  $labels = array(
-    'name' => _x('Works', 'post type general name'),
-    'singular_name' => _x('Work', 'post type singular name'),
-    'add_new' => _x('Add Work', 'staff'),
-    'add_new_item' => __('Add new work'),
-    'edit_item' => __('Edit Work'),
-    'new_item' => __('New Work'),
-    'all_items' => __('All Works'),
-    'view_item' => __('View Work'),
-    'search_items' => __('Search Works'),
-    'not_found' =>  __('No Works found'),
-    'not_found_in_trash' => __('No Works found in Trash'), 
-    'parent_item_colon' => '',
-    'menu_name' => 'Works'
+add_action( 'init', 'cptui_register_my_cpts' );
+function cptui_register_my_cpts() {
+	$labels = array(
+		"name" => "Works",
+		"singular_name" => "Work",
+		"menu_name" => "Works",
+		"all_items" => "All Works",
+		"add_new" => "Add New",
+		"add_new_item" => "Add New Work",
+		"edit" => "Edit",
+		"edit_item" => "Edit Work",
+		"new_item" => "New Work",
+		"view" => "View",
+		"view_item" => "View Work",
+		"search_items" => "Search Work",
+		"not_found" => "No Works Found",
+		"not_found_in_trash" => "No Works found in Trash",
+		"parent" => "Parent Work",
+		);
 
-  );
-  $args = array(
-    'labels' => $labels,
-    'public' => true,
-    'show_ui' => true, 
-    'show_in_menu' => true, 
-    'query_var' => true,
-	'has_archive'   => true,
-	'rewrite' => array('slug' => 'works'),
-    'capability_type' => 'post',
-    'supports' => array( 'title', 'author', 'revisions'  ),
-    // Set the available taxonomies here
-    //'taxonomies' => array('post_tag') 
-  );
-  
-  register_post_type('work',$args); /* staff is the legacy id that is now used for Our Team */
-//}
+	$args = array(
+		"labels" => $labels,
+		"description" => "A work of art",
+		"public" => true,
+		"show_ui" => true,
+		"has_archive" => true,
+		"show_in_menu" => true,
+		"exclude_from_search" => false,
+		"capability_type" => "post",
+		"map_meta_cap" => true,
+		"hierarchical" => false,
+		"rewrite" => array( "slug" => "work", "with_front" => true ),
+		"query_var" => true,
+				
+		"supports" => array( "title", "editor", "custom-fields", "revisions", "thumbnail", "author" ),		
+	);
+	register_post_type( "work", $args );
+
+// End of cptui_register_my_cpts()
+}
 
 // add_action( 'init', 'works_cpt_init' );
 
@@ -73,168 +78,427 @@ add_filter( 'wp_insert_post_data', 'myplugin_update_slug', 99, 2 );
 */
 
 
-////////////* Series TAXONOMY *//////////////
+////////////* TAXONOMies *//////////////
 
-/*
-add_action( 'init', 'create_series_taxonomy', 0 );
+add_action( 'init', 'cptui_register_my_taxes' );
+function cptui_register_my_taxes() {
 
-function create_series_taxonomy() 
-{
-  // Add new taxonomy, make it hierarchical (like categories)
-  $labels = array(
-    'name' => _x( 'Series', 'taxonomy general name' ),
-    'singular_name' => _x( 'Series', 'taxonomy singular name' ),
-    'search_items' =>  __( 'Search Series' ),
-    'all_items' => __( 'All Series' ),
-    'parent_item' => __( 'Parent Series' ),
-    'parent_item_colon' => __( 'Parent Series:' ),
-    'edit_item' => __( 'Edit Series' ), 
-    'update_item' => __( 'Update Series' ),
-    'add_new_item' => __( 'Add new Series' ),
-    'new_item_name' => __( 'New Series name' ),
-    'menu_name' => __( 'Series' ),
-  ); 	
+	$labels = array(
+		"name" => "Series",
+		"label" => "Series",
+		"menu_name" => "Series",
+		"all_items" => "All Series",
+		"edit_item" => "Edit Series",
+		"view_item" => "View Series",
+		"update_item" => "Update Series Name",
+		"add_new_item" => "Add New Series",
+		"new_item_name" => "New Series Name",
+		"parent_item" => NULL,
+		"parent_item_colon" => NULL,
+		"search_items" => "Search Series",
+		"popular_items" => NULL,
+		"separate_items_with_commas" => NULL,
+		"add_or_remove_items" => "Add or remove series",
+		"choose_from_most_used" => NULL,
+		"not_found" => "No series found",
+		);
 
-  register_taxonomy('series',array('work'), array(
-    'hierarchical' => true,
-    'labels' => $labels,
-    'show_ui' => true,
-    'query_var' => true,
-    'rewrite' => array( 'slug' => 'series'), 
-  ));
-  
+	$args = array(
+		"labels" => $labels,
+		"hierarchical" => true,
+		"label" => "Series",
+		"show_ui" => true,
+		"query_var" => true,
+		"rewrite" => array( 'slug' => 'series', 'with_front' => true ),
+		"show_admin_column" => false,
+	);
+	register_taxonomy( "series", array( "work" ), $args );
+
+
+	$labels = array(
+		"name" => "Keywords",
+		"label" => "Keywords",
+		"menu_name" => "Keywords",
+		"all_items" => "All Keywords",
+		"edit_item" => "Edit Keyword",
+		"view_item" => "View Keyword",
+		"update_item" => "Update Keyword Name",
+		"add_new_item" => "Add New Keyword",
+		"new_item_name" => "New Keyword Name",
+		"parent_item" => "Parent Keyword",
+		"parent_item_colon" => "Parent Keyword:",
+		"search_items" => "Search Keywords",
+		"popular_items" => "Popular Keywords",
+		"separate_items_with_commas" => "Separate keywords with commas",
+		"add_or_remove_items" => "Add or remove keywords",
+		"choose_from_most_used" => "Choose from the most used keywords",
+		"not_found" => "No keywords found",
+		);
+
+	$args = array(
+		"labels" => $labels,
+		"hierarchical" => false,
+		"label" => "Keywords",
+		"show_ui" => true,
+		"query_var" => true,
+		"rewrite" => array( 'slug' => 'keyword', 'with_front' => true ),
+		"show_admin_column" => false,
+	);
+	register_taxonomy( "keyword", array( "work" ), $args );
+
+
+	$labels = array(
+		"name" => "Exhibitions",
+		"label" => "Exhibitions",
+		"menu_name" => "Exhibitions",
+		"all_items" => "All Exhibitions",
+		"edit_item" => "Edit Exhibition",
+		"view_item" => "View Exhibition",
+		"update_item" => "Update Exhibition Name",
+		"add_new_item" => "Add New Exhibition",
+		"new_item_name" => "New Exhibition Name",
+		"parent_item" => NULL,
+		"parent_item_colon" => NULL,
+		"search_items" => "Search Exhibitions",
+		"popular_items" => NULL,
+		"separate_items_with_commas" => NULL,
+		"add_or_remove_items" => "Add or remove exhibitions",
+		"choose_from_most_used" => NULL,
+		"not_found" => "No exhibitions found",
+		);
+
+	$args = array(
+		"labels" => $labels,
+		"hierarchical" => true,
+		"label" => "Exhibitions",
+		"show_ui" => true,
+		"query_var" => true,
+		"rewrite" => array( 'slug' => 'exhibition', 'with_front' => true ),
+		"show_admin_column" => false,
+	);
+	register_taxonomy( "exhibition", array( "work" ), $args );
+
+
+	$labels = array(
+		"name" => "Where Made",
+		"label" => "Where Made",
+		"menu_name" => "Where Made",
+		"all_items" => "All Where Made",
+		"edit_item" => "Edit Where Made",
+		"view_item" => "View Where Made",
+		"update_item" => "Update Where Made Name",
+		"add_new_item" => "Add New Where Made",
+		"new_item_name" => "New Where Made Name",
+		"parent_item" => NULL,
+		"parent_item_colon" => NULL,
+		"search_items" => "Search Where Made",
+		"popular_items" => NULL,
+		"separate_items_with_commas" => NULL,
+		"add_or_remove_items" => "Add or remove where made",
+		"choose_from_most_used" => NULL,
+		"not_found" => "None found",
+		);
+
+	$args = array(
+		"labels" => $labels,
+		"hierarchical" => true,
+		"label" => "Where Made",
+		"show_ui" => true,
+		"query_var" => true,
+		"rewrite" => array( 'slug' => 'where-made', 'with_front' => true ),
+		"show_admin_column" => false,
+	);
+	register_taxonomy( "where-made", array( "work" ), $args );
+
+
+	$labels = array(
+		"name" => "Literature",
+		"label" => "Literature",
+		"menu_name" => "Literature",
+		"all_items" => "All Literature",
+		"edit_item" => "Edit Literature",
+		"view_item" => "View Literature",
+		"update_item" => "Update Literature Name",
+		"add_new_item" => "Add New Literature",
+		"new_item_name" => "New Literature Name",
+		"parent_item" => NULL,
+		"parent_item_colon" => NULL,
+		"search_items" => "Search Literature",
+		"popular_items" => NULL,
+		"separate_items_with_commas" => NULL,
+		"add_or_remove_items" => "Add or remove items",
+		"choose_from_most_used" => NULL,
+		"not_found" => "No literature found",
+		);
+
+	$args = array(
+		"labels" => $labels,
+		"hierarchical" => true,
+		"label" => "Literature",
+		"show_ui" => true,
+		"query_var" => true,
+		"rewrite" => array( 'slug' => 'literature', 'with_front' => true ),
+		"show_admin_column" => false,
+	);
+	register_taxonomy( "literature", array( "work" ), $args );
+
+
+	$labels = array(
+		"name" => "Printer",
+		"label" => "Printers",
+		"menu_name" => "Printers",
+		"all_items" => "All Printers",
+		"edit_item" => "Edit Printer",
+		"view_item" => "View Printer",
+		"update_item" => "Update Printer Name",
+		"add_new_item" => "Add New Printer",
+		"new_item_name" => "New Printer Name",
+		"parent_item" => NULL,
+		"parent_item_colon" => NULL,
+		"search_items" => "Search Printers",
+		"popular_items" => NULL,
+		"separate_items_with_commas" => NULL,
+		"add_or_remove_items" => "Add or remove printers",
+		"choose_from_most_used" => NULL,
+		);
+
+	$args = array(
+		"labels" => $labels,
+		"hierarchical" => true,
+		"label" => "Printers",
+		"show_ui" => true,
+		"query_var" => true,
+		"rewrite" => array( 'slug' => 'printer', 'with_front' => true ),
+		"show_admin_column" => false,
+	);
+	register_taxonomy( "printer", array( "work" ), $args );
+
+
+	$labels = array(
+		"name" => "Medium",
+		"label" => "Medium Categories",
+		"menu_name" => "Medium Category",
+		"all_items" => "All Mediums",
+		"edit_item" => "Edit Medium Category",
+		"view_item" => "View Medium Category",
+		"update_item" => "Update Medium Name",
+		"add_new_item" => "Add New Medium",
+		"new_item_name" => "New Medium Category Name",
+		"parent_item" => "Parent Medium Category",
+		"parent_item_colon" => "Parent Medium Category:",
+		"search_items" => "Search Medium Categories",
+		"not_found" => "No work categories found",
+		);
+
+	$args = array(
+		"labels" => $labels,
+		"hierarchical" => true,
+		"label" => "Medium Categories",
+		"show_ui" => true,
+		"query_var" => true,
+		"rewrite" => array( 'slug' => 'medium', 'with_front' => true ),
+		"show_admin_column" => false,
+	);
+	register_taxonomy( "medium", array( "work" ), $args );
+	
+	$labels = array(
+		"name" => "Collection",
+		"label" => "Collections",
+		"menu_name" => "Collection",
+		"all_items" => "All Collections",
+		"edit_item" => "Edit Collection",
+		"view_item" => "View Collection",
+		"update_item" => "Update Collection",
+		"add_new_item" => "Add New Collection",
+		"new_item_name" => "New Collection Name",
+		"parent_item" => NULL,
+		"parent_item_colon" => NULL,
+		"search_items" => "Search Collections",
+		"popular_items" => NULL,
+		"separate_items_with_commas" => NULL,
+		"add_or_remove_items" => "Add or remove collections",
+		"choose_from_most_used" => NULL,
+		"not_found" => "No collections found",
+		);
+
+	$args = array(
+		"labels" => $labels,
+		"hierarchical" => true,
+		"label" => "Collections",
+		"show_ui" => true,
+		"query_var" => true,
+		"rewrite" => array( 'slug' => 'collection', 'with_front' => true ),
+		"show_admin_column" => false,
+	);
+	register_taxonomy( "collection", array( "work" ), $args );
+	
+	
+	$labels = array(
+		"name" => "Support",
+		"label" => "Support",
+		"menu_name" => "Support",
+		"all_items" => "All Support",
+		"edit_item" => "Edit Support",
+		"view_item" => "View Support",
+		"update_item" => "Update Support",
+		"add_new_item" => "Add New Support",
+		"new_item_name" => "New Support Name",
+		"parent_item" => NULL,
+		"parent_item_colon" => NULL,
+		"search_items" => "Search Support",
+		"popular_items" => NULL,
+		"separate_items_with_commas" => NULL,
+		"add_or_remove_items" => "Add or remove support",
+		"choose_from_most_used" => NULL,
+		"not_found" => "No support items found",
+		);
+
+	$args = array(
+		"labels" => $labels,
+		"hierarchical" => true,
+		"label" => "Support",
+		"show_ui" => true,
+		"query_var" => true,
+		"rewrite" => array( 'slug' => 'support', 'with_front' => false ),
+		"show_admin_column" => false,
+	);
+	register_taxonomy( "support", array( "work" ), $args );
+
+// End cptui_register_my_taxes
 }
-*/
 
-////////////* Location Made TAXONOMY *//////////////
 
-/*
-add_action( 'init', 'create_location_made_taxonomy', 0 );
+// Hide the parent category dropdown 
+// http://wordpress.stackexchange.com/questions/58799/remove-parent-selection-when-adding-editing-categories
 
-function create_location_made_taxonomy() 
+// Series
+add_action( 'admin_head-edit-tags.php', 'remove_parent_ui_series' );
+function remove_parent_ui_series()
 {
-  // Add new taxonomy, make it hierarchical (like categories)
-  $labels = array(
-    'name' => _x( 'Location Made', 'taxonomy general name' ),
-    'singular_name' => _x( 'Location Made', 'taxonomy singular name' ),
-    'search_items' =>  __( 'Search Locations' ),
-    'all_items' => __( 'All Locations Made' ),
-    'parent_item' => __( 'Parent Location Made' ),
-    'parent_item_colon' => __( 'Parent Location Made:' ),
-    'edit_item' => __( 'Edit Location Made' ), 
-    'update_item' => __( 'Update Location Made' ),
-    'add_new_item' => __( 'Add new Location Made' ),
-    'new_item_name' => __( 'New Location Made name' ),
-    'menu_name' => __( 'Location Made' ),
-  ); 	
+    if ( 'series' != $_GET['taxonomy'] )
+        return;
 
-  register_taxonomy('location_made',array('work'), array(
-    'hierarchical' => true,
-    'labels' => $labels,
-    'show_ui' => true,
-    'query_var' => true,
-    'rewrite' => array( 'slug' => 'location'), 
-  ));
-  
+    $parent = 'parent()';
+
+    if ( isset( $_GET['action'] ) )
+        $parent = 'parent().parent()';
+
+    ?>
+        <script type="text/javascript">
+            jQuery(document).ready(function($)
+            {     
+                $('label[for=parent]').<?php echo $parent; ?>.remove();       
+            });
+        </script>
+    <?php
 }
-*/
 
-////////////* Support TAXONOMY *//////////////
-
-/*
-add_action( 'init', 'create_support_taxonomy', 0 );
-
-function create_support_taxonomy() 
+// Exhibition
+add_action( 'admin_head-edit-tags.php', 'remove_parent_ui_exhibition' );
+function remove_parent_ui_exhibition()
 {
-  // Add new taxonomy, make it hierarchical (like categories)
-  $labels = array(
-    'name' => _x( 'Support', 'taxonomy general name' ),
-    'singular_name' => _x( 'Support', 'taxonomy singular name' ),
-    'search_items' =>  __( 'Search Support' ),
-    'all_items' => __( 'All Support entries' ),
-    'parent_item' => __( 'Parent Support Entry' ),
-    'parent_item_colon' => __( 'Parent Support:' ),
-    'edit_item' => __( 'Edit Support entry' ), 
-    'update_item' => __( 'Update Support' ),
-    'add_new_item' => __( 'Add new Support' ),
-    'new_item_name' => __( 'New Support' ),
-    'menu_name' => __( 'Support' ),
-  ); 	
+    if ( 'exhibition' != $_GET['taxonomy'] )
+        return;
 
-  register_taxonomy('support',array('work'), array(
-    'hierarchical' => true,
-    'labels' => $labels,
-    'show_ui' => true,
-    'query_var' => true,
-    'rewrite' => array( 'slug' => 'support'), 
-  ));
-  
+    $parent = 'parent()';
+
+    if ( isset( $_GET['action'] ) )
+        $parent = 'parent().parent()';
+
+    ?>
+        <script type="text/javascript">
+            jQuery(document).ready(function($)
+            {     
+                $('label[for=parent]').<?php echo $parent; ?>.remove();       
+            });
+        </script>
+    <?php
 }
-*/
 
-
-////////////* Collection Location TAXONOMY *//////////////
-
-/*
-add_action( 'init', 'create_collection_location_taxonomy', 0 );
-
-function create_collection_location_taxonomy() 
+// Where Made
+add_action( 'admin_head-edit-tags.php', 'remove_parent_ui_where' );
+function remove_parent_ui_where()
 {
-  // Add new taxonomy, make it hierarchical (like categories)
-  $labels = array(
-    'name' => _x( 'Collection Location', 'taxonomy general name' ),
-    'singular_name' => _x( 'Collection Location', 'taxonomy singular name' ),
-    'search_items' =>  __( 'Search Collection Locations' ),
-    'all_items' => __( 'All Collection Locations' ),
-    'parent_item' => __( 'Parent Collection Location' ),
-    'parent_item_colon' => __( 'Parent Collection Location:' ),
-    'edit_item' => __( 'Edit Collection Location' ), 
-    'update_item' => __( 'Update Collection Location' ),
-    'add_new_item' => __( 'Add new Collection Location' ),
-    'new_item_name' => __( 'New Collection Location name' ),
-    'menu_name' => __( 'Collection Location' ),
-  ); 	
+    if ( 'where-made' != $_GET['taxonomy'] )
+        return;
 
-  register_taxonomy('collection_location',array('works'), array(
-    'hierarchical' => true,
-    'labels' => $labels,
-    'show_ui' => true,
-    'query_var' => true,
-    'rewrite' => array( 'slug' => 'collection-location'), 
-  ));
-  
+    $parent = 'parent()';
+
+    if ( isset( $_GET['action'] ) )
+        $parent = 'parent().parent()';
+
+    ?>
+        <script type="text/javascript">
+            jQuery(document).ready(function($)
+            {     
+                $('label[for=parent]').<?php echo $parent; ?>.remove();       
+            });
+        </script>
+    <?php
 }
-*/
 
-////////////* Keywords TAXONOMY *//////////////
-
-/*
-add_action( 'init', 'create_keywords_taxonomy', 0 );
-
-function create_keywords_taxonomy() 
+// Literature
+add_action( 'admin_head-edit-tags.php', 'remove_parent_ui_literature' );
+function remove_parent_ui_literature()
 {
-  // Add new taxonomy, make it non-hierarchical (like tags)
-  $labels = array(
-    'name' => _x( 'Keywords', 'taxonomy general name' ),
-    'singular_name' => _x( 'Keyword', 'taxonomy singular name' ),
-    'search_items' =>  __( 'Search Keywords' ),
-    'all_items' => __( 'All Keywords' ),
-    'parent_item' => __( 'Parent Keyword' ),
-    'parent_item_colon' => __( 'Parent Keyword:' ),
-    'edit_item' => __( 'Edit Keyword' ), 
-    'update_item' => __( 'Update Keywords' ),
-    'add_new_item' => __( 'Add new Keyword' ),
-    'new_item_name' => __( 'New Keyword name' ),
-    'menu_name' => __( 'Keywords' ),
-  ); 	
+    if ( 'literature' != $_GET['taxonomy'] )
+        return;
 
-  register_taxonomy('keywords',array('work'), array(
-    'hierarchical' => false,
-    'labels' => $labels,
-    'show_ui' => true,
-    'query_var' => true,
-    'rewrite' => array( 'slug' => 'keywords'), 
-  ));
-  
+    $parent = 'parent()';
+
+    if ( isset( $_GET['action'] ) )
+        $parent = 'parent().parent()';
+
+    ?>
+        <script type="text/javascript">
+            jQuery(document).ready(function($)
+            {     
+                $('label[for=parent]').<?php echo $parent; ?>.remove();       
+            });
+        </script>
+    <?php
 }
-*/
+
+// Printer
+add_action( 'admin_head-edit-tags.php', 'remove_parent_ui_printer' );
+function remove_parent_ui_printer()
+{
+    if ( 'printer' != $_GET['taxonomy'] )
+        return;
+
+    $parent = 'parent()';
+
+    if ( isset( $_GET['action'] ) )
+        $parent = 'parent().parent()';
+
+    ?>
+        <script type="text/javascript">
+            jQuery(document).ready(function($)
+            {     
+                $('label[for=parent]').<?php echo $parent; ?>.remove();       
+            });
+        </script>
+    <?php
+}
+
+// Collection
+add_action( 'admin_head-edit-tags.php', 'remove_parent_ui_collection' );
+function remove_parent_ui_collection()
+{
+    if ( 'collection' != $_GET['taxonomy'] )
+        return;
+
+    $parent = 'parent()';
+
+    if ( isset( $_GET['action'] ) )
+        $parent = 'parent().parent()';
+
+    ?>
+        <script type="text/javascript">
+            jQuery(document).ready(function($)
+            {     
+                $('label[for=parent]').<?php echo $parent; ?>.remove();       
+            });
+        </script>
+    <?php
+}

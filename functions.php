@@ -18,9 +18,10 @@ $sage_includes = [
   'lib/assets.php',                // Scripts and stylesheets
   'lib/titles.php',                // Page titles
   'lib/extras.php',                // Custom functions
-  //'lib/cpt-init.php',                // Custom post types and taxonomies
+  'lib/cpt-init.php',                // Custom post types and taxonomies
   'lib/custom.php',                // Additional Custom functions
   'lib/infoboxes.php',                // Functions to building the infoboxes
+  'lib/acf.php'             		// ACF specific functions
 ];
 
 foreach ($sage_includes as $file) {

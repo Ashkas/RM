@@ -1,0 +1,339 @@
+// Automatically injected Bower dependencies via wiredep (never manually edit this block)
+// bower:scss
+//@import "main.scss";
+
+
+// typography
+
+$titleFont: Helvetica, verdana, Arial, sans-serif;
+$bodyFont: Helvetica, verdana, Arial, sans-serif;
+
+ // Generic styles for printing
+
+@media print and (color) {
+   * {
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+   }
+}
+ 
+html, body {
+	/*changing width to 100% causes huge overflow and wrap*/
+	height:100%; 
+	//overflow: hidden;
+	font-family: $bodyFont;
+	background: #FFF; 
+	color: black;
+	font-size: 8pt;
+}
+
+@page {
+	//margin: 2cm;
+}
+
+.clearfix, .mobile_clearfix {
+	*zoom: 1;
+}
+.clearfix:before,
+.clearfix:after, .mobile_clearfix:before, .mobile_clearfix:after {
+	display: table;
+	content: "";
+}
+.clearfix:after, .mobile_clearfix:after {
+  clear: both;
+}
+
+hr {
+	color: #ccc;
+	background-color: #ccc;
+}
+h1, h2, h3, h4, h5, h6, code, pre, p {
+	color: #000;
+	text-transform: none; /* because sometimes I set all-caps */
+	page-break-after: avoid;
+}
+h1 {
+	font-size: 11pt;
+	margin-top: 1em;
+	font-family: $titleFont;
+}
+h2 {
+	font-size: 10pt;
+	font-family: $titleFont;
+}
+h3 {
+	font-size: 9pt;
+	font-family: $titleFont;
+}
+h4, h5, h6 {
+	font-size: 8pt;
+	font-family: $titleFont;
+}
+p {
+	padding-left: 0px !important;
+}
+code, pre {
+	font-size: 8pt;
+	background-color: transparent;
+	/* just in case the user configured browser to print backgrounds */
+}
+ul, ol {
+	
+	padding: 0px 0px rem-calc(10px) rem-calc(20px);
+	margin: 0px 0px 15px;
+}
+
+ul {
+	
+	&.no_bullets {
+		
+		padding-left: 0px;
+		
+		li {
+			
+			list-style-type: none;
+		}
+	}
+}
+
+ol {
+	
+	li {
+		
+		list-style: lower-alpha;
+	}
+}
+blockquote {
+	background-image: none;
+	/* though they may not print, I�d rather be sure */
+}
+a:link, a:visited {
+	text-decoration: underline;
+	color: #000;
+}
+abbr:after, acronym:after { /* some HTML4 love */
+	content:"" !important;
+	//content: " (" attr(title) ") ";
+/* I suspect I am one of the few who still use these elements */
+}
+
+.centre_text {
+	text-align: center;
+}
+
+img {
+	//max-width: 100% !important;
+}
+
+// Hide buttons
+button, input[type="submit"] {
+	
+	display: none;
+}
+
+// Header section
+header[role=banner]  {
+	background: none;
+	color: #000;
+
+	img {
+		filter: url(inverse.svg#negative);
+		-webkit-filter: invert(100%);
+		filter: invert(100%);
+	}
+	
+	.header_mobile_icons {
+		display: none;
+	}
+	
+	.header_border {
+		margin-bottom: 0px;
+	}
+}
+
+// Hide the main menu 
+#menu-primary-menu {
+	
+	display: none;
+}
+
+article {
+	//page-break-before: always;
+	
+	a {
+		font-weight: bolder;
+		text-decoration: none;
+	}
+	
+	a[href^=http]:after {
+		content:"" !important;
+		//content:" <" attr(href) "> ";
+		//word-wrap: break-word;
+	}
+   
+	a[href^="#"]:after {
+		content:"" !important;
+		//content: "";
+		//word-wrap: break-word;
+	}
+	
+	a[rel="external"]:after {
+		content:"" !important;
+	    //content: " <" attr(href) ">"; 
+	    //word-wrap: break-word;
+	}
+	
+	a[href]:after {
+	   content:"" !important;
+	}
+	
+/*
+	$a:after > img {
+		content: "";
+	}
+*/
+	
+/*
+	a:not(:local-link):after {
+		content:" <" attr(href) "> ";
+	}
+*/
+	
+	h1.work_title {
+		margin: 0.5em 0px;
+	}
+}
+
+ul, img {
+   page-break-inside: avoid;
+}
+
+
+// Single work
+#print-work {
+	
+	// Hide the title
+	.work_title {
+		display: none;
+	}
+	
+	// Display the hidden final work
+	.print_work_img {
+		
+		display: none;
+	}
+	
+	// Hide the img slider as we can't control it in print
+	#work_slider {
+		display: none !important;
+	}
+	
+	// Hide the carousel nav
+	#work_slider_navigation {
+		display: none !important;
+	}
+	
+	// hide the state descriptions
+	#work_slider_description {
+		display: none !important;
+	}
+	
+	// Hide the states button
+	button {
+		display: none;
+	}
+	
+	// Hide the info box
+	.info_box {
+		display: none;
+	}
+	
+	// Hide pagination
+	.work_pagination {
+		display: none;
+	}
+}
+
+// Required bootstrap elements
+
+
+
+// Print the full state descriptions
+
+ul.zebra_list {
+	padding: 0px;
+	width: 100%;
+	margin: 0px;
+
+	img {
+		max-width: 100%;
+		height: auto;
+		width: 100%;
+		margin: 0px;
+	}
+	
+	p {
+		margin-left: 0px;
+	}
+	
+	li.overlay_grid {
+		
+		page-break-inside: avoid;
+		margin: 0px;
+		padding: 0px;
+		width: 100%;
+		display: block;	
+		list-style: none;
+		margin-bottom: rem-calc(40px);
+		padding-bottom: rem-calc(40px);
+		border-bottom: 1px solid #eee;
+		clear: both;
+		
+		&:last-child {
+			
+			border-bottom: none;
+		}
+		
+		// Chrome needs additional controls over the columns
+		.col-xs-3 {
+			margin-left: 0px;
+			width: 20% !important;
+			float: left;
+			display: inline-block;
+		}
+		
+		.col-xs-9 {
+			margin-left: 0px;
+			width: 73% !important;
+			float: left;
+			display: inline-block;
+		}
+		
+		.col-xs-12 {
+			width: 100% !important;
+		}
+	}
+	
+	ol, ul {
+		
+		padding-left: 18px;
+		
+		li {
+			
+			list-style: outside none lower-latin;
+			margin-bottom: rem-calc(5px);
+			padding-bottom: 0px;
+			border-bottom: 0px;
+			text-align: left;
+		}
+	}
+}
+
+
+footer[role="contentinfo"] {
+	
+	// Hide the menu
+	.nav_menu-2 {
+		display: none !important;
+	}
+}

@@ -1,0 +1,92 @@
+h1.work_title {
+	
+	font-size: rem-calc(19px);
+	font-family: $titleFont;
+	margin-bottom: rem-calc(20px);
+	letter-spacing: -0.015em;
+	font-weight: 400;
+	
+	span {
+		color: $lightgrey;
+		font-style: italic;
+		font-weight: 200;
+		//font-size: rem-calc(16px);
+	}
+	
+	@include mappy-bp($tab) {
+		
+		font-size: rem-calc(24px);
+		letter-spacing: -0.025em;
+		
+		span {
+			//font-size: rem-calc(20px);
+		}
+	}
+}
+
+// This is the title under the sliders
+h2.state_title {
+	
+	font-size: rem-calc(16px);
+}
+
+.work_entry {
+	
+	img {
+		max-width: 100%;
+		height: auto;
+	}
+}
+
+.work_states {
+	
+	h3 {
+		
+		font-size: rem-calc(16px);
+		border-bottom: none !important;
+		padding-bottom: rem-calc(10px);
+	}
+	
+	p {
+		padding-left: 0px !important;
+	}
+}
+
+// Hide the print img, it will be displayed in the print.css
+#print-work {
+	
+	.print_work_img {
+		
+		display: none;
+		visibility: hidden;
+	}
+}
+
+// This is the button for printing a work
+.print-work {
+	
+	background: none;
+	margin-bottom: rem-calc(10px);
+	
+	[class^="icon-"], [class*=" icon-"] {
+		
+		background: none;
+		border: none;
+	}
+	
+	@include mappy-bp($tab) {
+		margin-bottom: 0px;
+		float: right;
+	}
+}
+
+// Button for printing the states
+.print-states {
+	
+	background: none;
+	
+	@include mappy-bp($tab) {
+		float: right;
+		margin-right: rem-calc(20px);
+	}
+}

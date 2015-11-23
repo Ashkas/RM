@@ -1,0 +1,108 @@
+/* ------------------------------------------------------ Single WorkPagination */
+
+.work_pagination {
+	
+	padding: rem-calc(10px) 0px;
+	border-top: 1px dotted $verylightgrey;
+	border-bottom: 1px dotted $verylightgrey;
+	
+	a {
+		text-decoration: none;
+	}
+}
+
+footer {
+	
+	.work_pagination {
+		
+		padding-bottom: 0px;
+		border-bottom: none;
+	}
+}
+
+
+/* ------------------------------------------------------ Pagination */
+
+.pagination {
+
+	font-family: $bodyFont;
+	text-transform: uppercase;
+	line-height: rem-calc(30px);
+	height: rem-calc(30px);
+	text-align: center;
+	border-radius: 0px;
+	display: block;
+	border-top: 1px solid $verylightgrey;
+	padding-top: rem-calc(10px);
+	margin-top: rem-calc(10px);
+	
+	.nav_text {
+		vertical-align: top;
+		line-height: rem-calc(28px);
+	}
+	
+	span {
+		font-size: rem-calc(18px);
+	}
+	
+	[class^="icon-"], [class*=" icon-"] {
+		
+		font-size: rem-calc(30px);
+		vertical-align: sub;
+		height: rem-calc(22px);
+		display: inline-block;
+	}
+	
+	a:link, a:visited {
+		color: $lightgrey;
+		text-decoration: none;
+		
+		[class^="icon-"], [class*=" icon-"] {
+			color: $darkgrey;
+		}
+	}
+	
+	a:hover, a:focus {
+		color: $blue;
+		text-decoration: none;
+		
+		[class^="icon-"], [class*=" icon-"] {
+			color: $blue;
+		}
+	}
+	
+	.inactive, .page-numbers {
+		display: inline-block;
+		width: rem-calc(15px);
+		
+	}
+	
+	.current {
+		//padding-bottom: u((3rem/16));
+	}
+	
+	.pagination_arrows {
+		display: inline-block;
+		margin-right: rem-calc(5px);
+		vertical-align: middle;
+		width: rem-calc(5px);
+		text-align: center;
+	}
+	
+	.previous {
+		float: left;
+		
+		&.page-numbers {
+			width: rem-calc(20px);	
+		}
+	}
+	
+	.next {
+		float: right;
+		
+		&.page-numbers {
+			margin-right: 0px;
+			width: rem-calc(20px);
+		}
+	}
+}
